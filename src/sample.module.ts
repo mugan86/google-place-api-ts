@@ -4,6 +4,7 @@ import { SampleComponent } from './sample.component';
 import { SampleDirective } from './sample.directive';
 import { SamplePipe } from './sample.pipe';
 import { SampleService } from './sample.service';
+import { APIKeyConfig } from './api-key-config.interface';
 
 export const MODULES = [
     CommonModule
@@ -24,10 +25,10 @@ export const MODULES = [
             ]
 })
 export class SampleModule { 
-    static forRoot(): ModuleWithProviders {
+    static forRoot(API_KEY?: APIKeyConfig): ModuleWithProviders {
     return {
       ngModule: SampleModule,
-      providers: [SampleService]
+      providers: [{provide: SampleService, useValue: API_KEY}]
     };
   }
 }
